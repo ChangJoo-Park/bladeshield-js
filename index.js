@@ -35,7 +35,6 @@ BladeShield = {
     return this
   },
   send: function(message, source, lineno, colno, e, remarks) {
-    console.log('#send')
     if (this.requestUri === '') {
       return this
     }
@@ -43,12 +42,11 @@ BladeShield = {
     if (issue.message === 'Script error') {
       return this
     }
-    console.log(issue)
-    // axios({
-    //   url: this.requestUri,
-    //   method: 'POST',
-    //   data: issue
-    // })
+    axios({
+      url: this.requestUri,
+      method: 'POST',
+      data: issue
+    })
     return this
   }
 }
