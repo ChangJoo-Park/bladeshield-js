@@ -15,12 +15,15 @@ BladeShield = {
     return true
   },
   validateIssue: function(message, source, lineno, colno, e) {
+    if (e === undefined) {
+      e = new Error()
+    }
     var issue = {
       message: message,
       source: source || '',
       lineno: lineno || -1,
       colno: colno || -1,
-      error: e || new Error()
+      error: e.stack || ''
     }
     return issue
   },
