@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script> -->
+  <script type="text/javascript" src="dist/bladeshield.bundle.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>BladeShield Test</h1>
+
+  <script type="text/javascript">
+    window.onerror = function (message, source, lineno, colno, error) {
+      BladeShield.setUri('http://<bladeshield-server>/api/issues')
+      .send(message, source, lineno, colno, error)
+    }
+  </script>
+  <script type="text/javascript" src="test-app.js"></script>
+</body>
+</html>
