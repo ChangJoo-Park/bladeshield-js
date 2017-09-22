@@ -15,17 +15,18 @@ BladeShield = {
     // TODO: Validate for BladeShield Server
     return true
   },
-  validateIssue: function(message, source, lineno, colno, e, remarks) {
+  validateIssue: function(message, source, lineno, colno, e) {
     if (e === undefined) {
       e = new Error()
     }
+
     var issue = {
       message: message,
       source: source || '',
       lineno: lineno || -1,
       colno: colno || -1,
       error: e.stack || '',
-      remarks: remarks || {}
+      remarks: this.remarks || []
     }
     return issue
   },
@@ -34,14 +35,30 @@ BladeShield = {
     this.requestUri = request_uri
     return this
   },
-  send: function(message, source, lineno, colno, e, remarks) {
+  // Set default remarks
+  setRemarks: function(remarks) {
+    this.remarks = remarks
+    return this
+  },
+  // send from try-catch
+  catch: function(e, remarks) {
     if (this.requestUri === '') {
       return this
     }
-    var issue = this.validateIssue(message, source, lineno, colno, e, remarks)
+    var message = e.message || ''
+    var e = e.stack || ''
+    return this.send(message, '', -1, -1, e)
+  },
+  send: function(message, source, lineno, colno, e) {
+    if (this.requestUri === '') {
+      return this
+    }
+
+    var issue = this.validateIssue(message, source, lineno, colno, e)
     if (issue.message === 'Script error') {
       return this
     }
+
     axios({
       url: this.requestUri,
       method: 'POST',
