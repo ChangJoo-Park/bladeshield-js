@@ -20,13 +20,16 @@ BladeShield = {
       e = new Error()
     }
 
+    var remarks = this.remarks || {}
+    remarks['current_url'] = window.location.href
+
     var issue = {
       message: message,
       source: source || '',
       lineno: lineno || -1,
       colno: colno || -1,
       error: e.stack || '',
-      remarks: this.remarks || []
+      remarks: remarks
     }
     return issue
   },
@@ -55,6 +58,7 @@ BladeShield = {
     }
 
     var issue = this.validateIssue(message, source, lineno, colno, e)
+
     if (issue.message === 'Script error') {
       return this
     }
