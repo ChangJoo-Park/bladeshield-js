@@ -1,7 +1,5 @@
-module.exports = function (message, source, lineno, colno, e) {
-  if (this.requestUri === '') {
-    return this
-  }
-
+module.exports = (uri, error) => {
+  console.log(uri)
+  console.log(error)
   return this
 }

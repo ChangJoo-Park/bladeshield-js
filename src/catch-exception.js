@@ -1,5 +1,5 @@
 const send = require('./send')
 
 module.exports = function (error) {
-  send(error)
+  send(this.requestUri, error)
 }
