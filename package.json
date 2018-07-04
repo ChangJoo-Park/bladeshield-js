@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel watch index.html --out-dir dist",
-    "build": "parcel build index.js  --out-dir dist"
+    "dev": "parcel watch index.js --out-dir dist/uncompressed --out-file bladeshield.js",
+    "build": "parcel build index.js  --out-dir dist --out-file bladeshield.js "
   },
   "keywords": [],
   "author": "ChangJoo Park<pcjpcj2@gmail.com>",
