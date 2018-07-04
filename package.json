@@ -5,17 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+    "dev": "parcel watch index.html --out-dir dist",
+    "build": "parcel build index.js  --out-dir dist"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "ChangJoo Park<pcjpcj2@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
-    "webpack": "^3.6.0"
-  },
-  "dependencies": {
-    "axios": "^0.16.2",
-    "lodash": "^4.17.4",
-    "url-parse": "^1.1.9"
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "parcel-bundler": "^1.9.4"
   }
 }
