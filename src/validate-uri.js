@@ -1,6 +1,5 @@
-module.exports = (match) => {
-  console.log(this.requestUri)
-  if (this.requestUri.trim() === '') {
+module.exports = function (match) {
+  if (this.requestUri || this.requestUri.trim() === '') {
     return false
   }
   // TODO: Validate for BladeShield Server
