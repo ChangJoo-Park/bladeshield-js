@@ -1,6 +1,4 @@
-const axios = require('axios')
-
-BladeShield = {
+window.BladeShield = {
   requestUri: '',
   remarks: [],
   errors: {
@@ -8,14 +6,14 @@ BladeShield = {
     SCRIPT_ERROR: 'Script error'
   },
   // Utility
-  validateUri: function(match) {
+  validateUri(match) {
     if (this.requestUri.trim() === '') {
       return false
     }
     // TODO: Validate for BladeShield Server
     return true
   },
-  validateIssue: function(message, source, lineno, colno, e) {
+  validateIssue(message, source, lineno, colno, e) {
     if (e === undefined) {
       e = new Error()
     }
@@ -34,17 +32,17 @@ BladeShield = {
     return issue
   },
   // Set URI for request
-  setUri: function(request_uri) {
+  setUri(request_uri) {
     this.requestUri = request_uri
     return this
   },
   // Set default remarks
-  setRemarks: function(remarks) {
+  setRemarks(remarks) {
     this.remarks = remarks
     return this
   },
   // send from try-catch
-  catch: function(e, remarks) {
+  catch (e, remarks) {
     if (this.requestUri === '') {
       return this
     }
@@ -52,7 +50,7 @@ BladeShield = {
     var e = e.stack || ''
     return this.send(message, '', -1, -1, e)
   },
-  send: function(message, source, lineno, colno, e) {
+  send(message, source, lineno, colno, e) {
     if (this.requestUri === '') {
       return this
     }
@@ -63,11 +61,12 @@ BladeShield = {
       return this
     }
 
-    axios({
-      url: this.requestUri,
-      method: 'POST',
-      data: issue
-    })
+    // axios({
+    //   url: this.requestUri,
+    //   method: 'POST',
+    //   data: issue
+    // })
+    console.log('fetch => asdf', fetch)
     return this
   }
 }
