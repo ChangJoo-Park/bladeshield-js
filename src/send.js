@@ -1,5 +1,11 @@
 module.exports = (uri, error) => {
-  console.log(uri)
-  console.log(error)
-  return this
+  fetch(uri, {
+    method: 'POST',
+    body: JSON.stringify(error)
+  }).then(response => {
+    return response.json()
+  }).then(data => {
+    console.log('Created Gist:', data.html_url)
+  })
+  .catch(e => console.error(e))
 }
