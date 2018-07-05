@@ -7,3 +7,5 @@ try {
 } catch (error) {
   BladeShield.catchException(error)
 }
+
+a.c()
